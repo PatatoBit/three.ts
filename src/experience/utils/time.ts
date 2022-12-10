@@ -1,4 +1,3 @@
-import { NumberController } from "lil-gui";
 import EventEmitter from "./eventEmitter.js";
 
 export default class Time extends EventEmitter {
