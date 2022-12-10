@@ -1,10 +1,4 @@
-import {
-  DirectionalLight,
-  Mesh,
-  MeshStandardMaterial,
-  sRGBEncoding,
-  Texture,
-} from "three";
+import { DirectionalLight, Mesh, MeshStandardMaterial, Texture } from "three";
 import Experience from "../experience";
 
 export default class Environment {
