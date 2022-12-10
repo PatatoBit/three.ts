@@ -1,8 +1,10 @@
-import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
+import { BoxGeometry, Mesh, MeshStandardMaterial } from "three";
 import Experience from "../experience";
+import Environment from "./environment";
 
 export default class World {
   experience: Experience;
+  environment: Environment;
   scene: Experience["scene"];
 
   constructor() {
@@ -12,8 +14,11 @@ export default class World {
     // Test mesh
     const testMesh = new Mesh(
       new BoxGeometry(1, 1, 1),
-      new MeshBasicMaterial({ wireframe: true })
+      new MeshStandardMaterial()
     );
     this.scene.add(testMesh);
+
+    // Setup
+    this.environment = new Environment();
   }
 }
