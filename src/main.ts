@@ -1,6 +1,6 @@
 import "./style.scss";
 
-import Experience from "./Experience/Experience";
+import Experience from "./experience/experience";
 
 const experience = new Experience(document.querySelector("canvas.webgl"));
 
