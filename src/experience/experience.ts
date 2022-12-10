@@ -14,15 +14,15 @@ declare global {
 let instance: Experience | null = null;
 
 export default class Experience {
-  canvas: HTMLCanvasElement;
-  sizes: Sizes;
-  time: Time;
-  scene: Scene;
-  camera: Camera;
-  renderer: Renderer;
-  world: World;
+  canvas!: HTMLCanvasElement;
+  sizes!: Sizes;
+  time!: Time;
+  scene!: Scene;
+  camera!: Camera;
+  renderer!: Renderer;
+  world!: World;
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement | null) {
     window.experience = this;
 
     if (instance) {
@@ -32,7 +32,7 @@ export default class Experience {
     instance = this;
 
     // Options
-    this.canvas = canvas;
+    this.canvas = canvas!;
 
     // Setup
     this.sizes = new Sizes();
@@ -47,6 +47,8 @@ export default class Experience {
     // Time tick event
     this.time.on("tick", () => this.update());
   }
+
+  init() {}
 
   resize() {
     // Window resize do what

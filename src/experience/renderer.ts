@@ -13,7 +13,7 @@ export default class Renderer {
   scene: Experience["scene"];
   camera: Experience["camera"];
 
-  instance: WebGLRenderer;
+  instance!: WebGLRenderer;
 
   constructor() {
     this.experience = new Experience(null);

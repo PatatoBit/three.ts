@@ -4,6 +4,8 @@ import Experience from "./experience/experience";
 
 const experience = new Experience(document.querySelector("canvas.webgl"));
 
+console.log(experience);
+
 // import * as THREE from "three";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import * as dat from "lil-gui";

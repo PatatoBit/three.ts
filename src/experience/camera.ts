@@ -8,8 +8,8 @@ export default class Camera {
   sizes: Experience["sizes"];
   scene: Experience["scene"];
   canvas: Experience["canvas"];
-  instance: PerspectiveCamera;
-  controls: OrbitControls;
+  instance!: PerspectiveCamera;
+  controls!: OrbitControls;
 
   constructor() {
     // this.experience = experience;
