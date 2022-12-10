@@ -6,10 +6,12 @@ export default class World {
   experience: Experience;
   environment: Environment;
   scene: Experience["scene"];
+  resources: Experience["resources"];
 
   constructor() {
     this.experience = new Experience(null);
     this.scene = this.experience.scene;
+    this.resources = this.experience.resources;
 
     // Test mesh
     const testMesh = new Mesh(
@@ -17,6 +19,11 @@ export default class World {
       new MeshStandardMaterial()
     );
     this.scene.add(testMesh);
+
+    this.resources.on("loaded", () => {
+      console.log("Resources ready");
+      this.environment = new Environment();
+    });
 
     // Setup
     this.environment = new Environment();
