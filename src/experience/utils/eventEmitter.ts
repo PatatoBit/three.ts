@@ -1,6 +1,6 @@
-// bunch on anys
+// @ts-nocheck
 export default class EventEmitter {
-  callbacks: any;
+  callbacks: () => void;
 
   constructor() {
     this.callbacks = {};
