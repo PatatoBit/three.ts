@@ -1,6 +1,8 @@
 import { Scene } from "three";
 import Camera from "./camera";
 import Renderer from "./renderer";
+import sources from "./sources";
+import Resources from "./utils/resources";
 import Sizes from "./utils/sizes";
 import Time from "./utils/time";
 import World from "./world/world";
@@ -18,6 +20,7 @@ export default class Experience {
   sizes!: Sizes;
   time!: Time;
   scene!: Scene;
+  resources!: Resources;
   camera!: Camera;
   renderer!: Renderer;
   world!: World;
@@ -38,6 +41,7 @@ export default class Experience {
     this.sizes = new Sizes();
     this.time = new Time();
     this.scene = new Scene();
+    this.resources = new Resources(sources);
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.world = new World();
