@@ -3,6 +3,7 @@ import Camera from "./camera";
 import Renderer from "./renderer";
 import Sizes from "./utils/sizes";
 import Time from "./utils/time";
+import World from "./world/world";
 
 declare global {
   interface Window {
@@ -19,6 +20,7 @@ export default class Experience {
   scene: Scene;
   camera: Camera;
   renderer: Renderer;
+  world: World;
 
   constructor(canvas: HTMLCanvasElement) {
     window.experience = this;
@@ -38,6 +40,7 @@ export default class Experience {
     this.scene = new Scene();
     this.camera = new Camera();
     this.renderer = new Renderer();
+    this.world = new World();
 
     // Resize event
     this.sizes.on("resize", () => this.resize());
