@@ -1,5 +1,5 @@
-import Sizes from "./utils/sizes.js";
-import Time from "./utils/time.js";
+import Sizes from "./utils/Sizes";
+import Time from "./utils/Time";
 
 declare global {
   interface Window {
@@ -30,11 +30,9 @@ export default class Experience {
 
   resize() {
     // Window resize do what
-    console.log("Resize");
   }
 
   update() {
     // Animate
-    console.log("Update");
   }
 }
