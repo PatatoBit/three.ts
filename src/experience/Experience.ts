@@ -1,4 +1,5 @@
 import Sizes from "./utils/sizes";
+import Time from "./utils/time";
 
 declare global {
   interface Window {
@@ -9,6 +10,7 @@ declare global {
 export default class Experience {
   canvas: HTMLCanvasElement;
   sizes: Sizes;
+  time: Time;
 
   constructor(canvas: HTMLCanvasElement) {
     window.experience = this;
@@ -18,5 +20,21 @@ export default class Experience {
 
     // Setup
     this.sizes = new Sizes();
+    this.time = new Time();
+
+    // Resize event
+    this.sizes.on("resize", () => this.resize());
+    // Time tick event
+    this.time.on("tick", () => this.update());
+  }
+
+  resize() {
+    // Window resize do what
+    console.log("Resize");
+  }
+
+  update() {
+    // Animate
+    console.log("Update");
   }
 }
