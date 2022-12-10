@@ -1,15 +1,12 @@
-import { DirectionalLight, Mesh, MeshStandardMaterial, Texture } from "three";
+import { DirectionalLight, Mesh, MeshStandardMaterial } from "three";
+import { EnvironmentMapConfig } from "../../types";
 import Experience from "../experience";
 
 export default class Environment {
   experience: Experience;
   scene: Experience["scene"];
   resources: Experience["resources"];
-  environmentMap: {
-    intensity: number;
-    texture: Texture;
-    updateMaterials: () => void;
-  };
+  environmentMap!: EnvironmentMapConfig;
 
   constructor() {
     this.experience = new Experience(null);

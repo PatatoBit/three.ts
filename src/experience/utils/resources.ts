@@ -1,5 +1,6 @@
 import { CubeTexture, CubeTextureLoader, Texture, TextureLoader } from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { CubeSource } from "../../types";
 import sources from "../sources";
 import EventEmitter from "./eventEmitter";
 
@@ -8,13 +9,13 @@ export default class Resources extends EventEmitter {
   items: typeof sources | any;
   toLoad: number;
   loaded: number;
-  loaders: {
+  loaders!: {
     gltfLoader: GLTFLoader;
     textureLoader: TextureLoader;
     cubeTextureLoader: CubeTextureLoader;
   };
 
-  constructor(sources) {
+  constructor(sources: CubeSource[]) {
     super();
 
     // Options
