@@ -1,4 +1,4 @@
-import EventEmitter from "./eventEmitter";
+import EventEmitter from "./eventEmitter.js";
 
 export default class Sizes extends EventEmitter {
   width: number;

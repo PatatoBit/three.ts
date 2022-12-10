@@ -1,5 +1,5 @@
-import Sizes from "./utils/sizes";
-import Time from "./utils/time";
+import Sizes from "./utils/sizes.js";
+import Time from "./utils/time.js";
 
 declare global {
   interface Window {
