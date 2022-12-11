@@ -11,7 +11,7 @@ export default class Environment {
   scene: Experience["scene"];
   resources: Experience["resources"];
   environmentMap!: any;
-  debug: import("d:/Projects/three-ts/src/experience/utils/debug").default;
+  debug: Experience["debug"];
   debugFolder: any;
   sunLight!: DirectionalLight;
 

@@ -10,7 +10,7 @@ export default class Fox {
   resource: any;
   model!: Mesh;
   animation: any;
-  debug: import("d:/Projects/three-ts/src/experience/utils/debug").default;
+  debug: Experience["debug"];
   debugFolder: any;
 
   constructor() {
