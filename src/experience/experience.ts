@@ -2,6 +2,7 @@ import { Scene } from "three";
 import Camera from "./camera";
 import Renderer from "./renderer";
 import sources from "./sources";
+import Debug from "./utils/debug";
 import Resources from "./utils/resources";
 import Sizes from "./utils/sizes";
 import Time from "./utils/time";
@@ -24,20 +25,22 @@ export default class Experience {
   camera!: Camera;
   renderer!: Renderer;
   world!: World;
+  debug!: Debug;
 
   constructor(canvas: HTMLCanvasElement | null) {
-    window.experience = this;
-
     if (instance) {
       return instance;
     }
 
     instance = this;
 
+    window.experience = this;
+
     // Options
     this.canvas = canvas!;
 
     // Setup
+    this.debug = new Debug();
     this.sizes = new Sizes();
     this.time = new Time();
     this.scene = new Scene();
@@ -45,6 +48,8 @@ export default class Experience {
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.world = new World();
+
+    console.log(this);
 
     // Resize event
     this.sizes.on("resize", () => this.resize());
