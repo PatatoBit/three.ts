@@ -1,11 +1,11 @@
 import { CubeTexture, CubeTextureLoader, Texture, TextureLoader } from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { CubeSource } from "../../types";
+import { Source } from "../../types";
 import sources from "../sources";
 import EventEmitter from "./eventEmitter";
 
 export default class Resources extends EventEmitter {
-  sources: typeof sources;
+  sources: Source[];
   items: typeof sources | any;
   toLoad: number;
   loaded: number;
@@ -15,7 +15,7 @@ export default class Resources extends EventEmitter {
     cubeTextureLoader: CubeTextureLoader;
   };
 
-  constructor(sources: CubeSource[]) {
+  constructor(sources: Source[]) {
     super();
 
     // Options
@@ -41,25 +41,22 @@ export default class Resources extends EventEmitter {
   setLoading() {
     for (const source of this.sources) {
       if (source.type === "gltfModel") {
-        this.loaders.gltfLoader.load(source.path.toString(), (file) => {
+        this.loaders.gltfLoader.load(source.path as string, (file) => {
           this.sourceLoaded(source, file);
         });
       } else if (source.type === "texture") {
-        this.loaders.textureLoader.load(source.path.toString(), (file) => {
+        this.loaders.textureLoader.load(source.path as string, (file) => {
           this.sourceLoaded(source, file);
         });
       } else if (source.type === "cubeTexture") {
-        this.loaders.cubeTextureLoader.load(source.path, (file) => {
+        this.loaders.cubeTextureLoader.load(source.path as string[], (file) => {
           this.sourceLoaded(source, file);
         });
       }
     }
   }
 
-  sourceLoaded(
-    source: { name: any; type?: string; path?: string[] },
-    file: GLTF | Texture | CubeTexture
-  ) {
+  sourceLoaded(source: Source, file: GLTF | Texture | CubeTexture) {
     this.items[source.name] = file;
 
     this.loaded++;
