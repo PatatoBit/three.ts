@@ -1,4 +1,4 @@
-import { Scene } from "three";
+import { Mesh, Scene } from "three";
 import Camera from "./camera";
 import Renderer from "./renderer";
 import sources from "./sources";
@@ -70,5 +70,31 @@ export default class Experience {
     this.camera.update();
     this.world.update();
     this.renderer.update();
+  }
+
+  destroy() {
+    this.sizes.off("resize");
+    this.time.off("tick");
+
+    this.scene.traverse((child) => {
+      if (child instanceof Mesh) {
+        child.geometry.dispose();
+
+        for (const key in child.material) {
+          const value = child.material[key];
+
+          if (value && typeof value.dispose === "function") {
+            value.dispose();
+          }
+        }
+      }
+    });
+
+    this.camera.controls.dispose();
+    this.renderer.instance.dispose();
+
+    if (this.debug.active) {
+      this.debug.ui.destroy();
+    }
   }
 }
