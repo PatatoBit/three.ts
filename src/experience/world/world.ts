@@ -1,12 +1,15 @@
 import { BoxGeometry, Mesh, MeshStandardMaterial } from "three";
 import Experience from "../experience";
 import Environment from "./environment";
+import Floor from "./floor";
 
 export default class World {
   experience: Experience;
-  environment: Environment;
+  environment!: Environment;
   scene: Experience["scene"];
   resources: Experience["resources"];
+
+  floor!: Floor;
 
   constructor() {
     this.experience = new Experience(null);
@@ -22,10 +25,8 @@ export default class World {
 
     this.resources.on("loaded", () => {
       console.log("Resources ready");
+      this.floor = new Floor();
       this.environment = new Environment();
     });
-
-    // Setup
-    this.environment = new Environment();
   }
 }
