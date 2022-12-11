@@ -1,12 +1,16 @@
-import { DirectionalLight, Mesh, MeshStandardMaterial } from "three";
-import { EnvironmentMapConfig } from "../../types";
+import {
+  DirectionalLight,
+  Mesh,
+  MeshStandardMaterial,
+  sRGBEncoding,
+} from "three";
 import Experience from "../experience";
 
 export default class Environment {
   experience: Experience;
   scene: Experience["scene"];
   resources: Experience["resources"];
-  environmentMap!: EnvironmentMapConfig;
+  environmentMap!: any;
 
   constructor() {
     this.experience = new Experience(null);
@@ -28,14 +32,11 @@ export default class Environment {
   }
 
   setEnvironmentMap() {
-    this.environmentMap = {
-      intensity: 0.4,
-      texture: this.resources.items.environmentMapTexture,
-      updateMaterials: () => {},
-    };
-
+    this.environmentMap = {};
     this.environmentMap.intensity = 0.4;
-    this.environmentMap.texture = this.resources.items.environtmentMapTexture;
+    this.environmentMap.texture = this.resources.items.environmentMapTexture;
+    this.environmentMap.texture.encoding = sRGBEncoding;
+
     this.scene.environment = this.environmentMap.texture;
 
     this.environmentMap.updateMaterials = () => {
@@ -50,7 +51,6 @@ export default class Environment {
         }
       });
     };
-
     this.environmentMap.updateMaterials();
   }
 }
