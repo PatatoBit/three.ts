@@ -1,7 +1,7 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial } from "three";
 import Experience from "../experience";
 import Environment from "./environment";
 import Floor from "./floor";
+import Fox from "./fox";
 
 export default class World {
   experience: Experience;
@@ -9,6 +9,7 @@ export default class World {
   scene: Experience["scene"];
   resources: Experience["resources"];
 
+  fox!: Fox;
   floor!: Floor;
 
   constructor() {
@@ -16,17 +17,17 @@ export default class World {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
 
-    // Test mesh
-    const testMesh = new Mesh(
-      new BoxGeometry(1, 1, 1),
-      new MeshStandardMaterial()
-    );
-    this.scene.add(testMesh);
-
     this.resources.on("loaded", () => {
       console.log("Resources ready");
       this.floor = new Floor();
+      this.fox = new Fox();
       this.environment = new Environment();
     });
+  }
+
+  update() {
+    if (this.fox) {
+      this.fox.update();
+    }
   }
 }
