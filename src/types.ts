@@ -1,9 +1,9 @@
 import { Texture } from "three";
 
-export interface CubeSource {
+export interface Source {
   name: string;
   type: string;
-  path: string[];
+  path: string[] | string;
 }
 
 export interface EnvironmentMapConfig {
